@@ -20,5 +20,48 @@
 		WHERE
 			`id` = #{id}
 	</select>
+	
+	<insert id="insertReview" parameterType="map" > <!--  resultType = "int"를 적으면 오류남 -->
+		INSERT
+			`new_review`
+			(
+				`storeId`
+				, `menu`
+				, `userName`
+				, `point`
+				, `review`
+			)
+			VALUE
+			(
+				#{`storeId`}
+				, #{`menu`}
+				, #{`userName`}
+				, #{`point`}
+				, #{`review`}
+			
+			)
+
+	</insert>
+	
+	<insert id="insertReviewBtObject" parameterType="com.kyung.spring.ex.mybatis.domain.Review">
+		INSERT
+			`new_review`
+			(
+				`storeId`
+				, `menu`
+				, `userName`
+				, `point`
+				, `review`
+			)
+			VALUE
+			(
+				#{storeId}
+				, #{menu}
+				, #{userName}
+				, #{point}
+				, #{review}
+			)
+	
+	</insert>
 
 </mapper>
