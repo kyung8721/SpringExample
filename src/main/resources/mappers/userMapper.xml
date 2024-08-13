@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- dtd : xml에서 사용될 태그를 정의한 문서 -->
+<!-- mybatis dtd -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.kyung.spring.ex.mvc.repository.UserRepository">
+ 	<select id="selectLastUser" resultType ="com.kyung.spring.ex.mvc.domain.User">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `yyyymmdd`
+ 			, `email`
+ 			, `introduce`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`new_user`
+ 		ORDER BY
+ 			`id` DESC
+ 		LIMIT
+ 			1 	
+ 	</select>
+ 
+ 
+ 
+ </mapper>
