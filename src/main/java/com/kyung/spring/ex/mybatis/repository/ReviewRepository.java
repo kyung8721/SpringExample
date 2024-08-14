@@ -21,4 +21,6 @@ public interface ReviewRepository {
 	
 	// 리뷰테이블에 한행 저장에 필요한 정보를 객체로 전달 받고 한 행을 insert
 	public int insertReviewBtObject(Review review);
+	
+	
 }
