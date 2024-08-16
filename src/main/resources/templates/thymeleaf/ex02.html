@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>반복문</h2>
+	
+	<h3>1. 숫자 반복</h3>
+	<!-- 0 ~ 4 반복 -->
+	<div th:each="i:${#numbers.sequence(0, 4)}"> <!-- #numbers.sequence(0, 4) : 0에서 4까지 만들어줌 -->
+		<span th:text="${i}"></span>
+	</div>
+	
+	<div th:each="fruit, status:${fruitList}">
+	<!--  변수 2개 선언 가능, 첫번째 변수 : i같은 역할 
+		두번째 변수는 변수의 상태를 확인, status.index로 인덱스만 뽑아 쓰기도 가능
+		예시 : 
+			사과 {index = 0, count = 1, size = 3, current = 사과}
+			귤 {index = 1, count = 2, size = 3, current = 귤}
+			바나나 {index = 2, count = 3, size = 3, current = 바나나}-->
+		<span th:text="${fruit}"></span>
+		<span th:text="|${status.index} ${status.count}|"></span>
+	</div>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>취미</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user:${userList}">
+				<td th:text="${user.name}">유재석</td>
+				<td th:text="${user.age}">52</td>
+				<td th:text="${user.hobby}">진행하기</td>
+			</tr>
+		</tbody>
+	
+	</table>
+</body>
+</html>

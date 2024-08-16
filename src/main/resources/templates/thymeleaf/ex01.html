@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 변수와 조건문</title>
+</head>
+<body>
+	
+	<h2>변수와 조건문</h2>
+	
+	<h3>1. 변수</h3>
+	<div th:with="number=100">
+		<h4 th:text="${number}"></h4>
+		<h4>[[${number}]]</h4> <!-- 대괄호 2개 안에 EL문법 써주면 th:text없이 jsp때처럼 사용할 수는 있는데 지양할것.  -->
+	</div>
+	
+	<h3>div 태그 바깥쪽</h3>
+	<h4 th:text="${number}"></h4> <!-- 태그 밖에서 변수가 불렸으므로 값이 나오지 않음 -->
+	
+	<h3>2. 태그 없이 thymeleaf 활용하기</h3>
+	<!-- 랜더링 되지 않는 태그 -->
+	<th:block th:with="number1 = 200, number2 = 250">
+		<h4 th:text="${number1}"></h4>
+		<h4 th:text="${number2}"></h4>
+		<h4 th:text="${number1 + number2}"></h4>
+		
+		<!-- 결과 : 450 -->
+		<h4 th:text="'결과 : ' + ${number1 + number2}"></h4>
+		<!-- 방법1 :  ""안에 문자열을 넣고 싶으면 ''안에 넣고 +로 엮어주기 -->
+		
+		<h4>결과 : [[${number1 + number2}]]</h4>
+		<!-- 방법2 : 대괄호 2개 안에 값 넣기 -->
+		
+		<h4 th:text="|결과 : ${number1 + number2}|"></h4>
+		<!-- 방법3 : ||사이에 넣어주기 -->
+		
+	</th:block>
+	
+	<h3>3. 태그 나타내기</h3>
+	<!-- html escape 처리 -->
+	<div th:text="'<b>진한글씨</b>'"></div> <!-- 글자만 나옴 -->
+	<div th:utext="'<b>진한글씨</b>'"></div> <!-- 태그가 적용되어 나옴 -->
+	
+	<h3>4. 조건문 - else if, else 없음</h3>
+	<th:block th:with="age=25">
+		<h4 th:if="false">true일 때 해당 태그가 랜더링 됨.</h4>
+		<h4 th:if="${age >= 20}">나이가 20살 이상이다.</h4>
+		<h4 th:if="${age < 30}">30살보다 어리다.</h4>
+		<h4 th:if="${age == 35}">나이가 35살이다</h4>
+		
+		<!-- unless - 부정 -->
+		<!-- if와 같은 조건을 가지고 둘 중 하나만 보여주고 싶을 때 사용 -->
+		<h4 th:if="${age >= 20}">성인이다.</h4>
+		<h4 th:unless="${age >= 20}">미성년자이다.</h4>
+	</th:block>
+	
+	<h3>4. switch</h3>
+	<th:block th:with="season='가을'">
+		<div th:switch="${season}">
+			<h4 th:case="봄">따뜻하다</h4><!-- ""안에 문자열만 들어가면 '' 생략 가능, 변수가 들어가면 생략 안됨 -->
+			<h4 th:case="여름">덥다</h4>
+			<h4 th:case="가을">시원하다</h4>
+			<h4 th:case="겨울">춥다</h4>
+			<h4 th:case="*">잘못된 계절입니다.</h4> <!-- 위의 케이스에 맞는 케이스가 없을 떄 -->
+		</div>
+		
+	</th:block>
+	
+	
+</body>
+</html>
