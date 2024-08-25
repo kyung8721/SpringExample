@@ -14,7 +14,7 @@ public class AjaxController {
 	
 	
 	// Response에 데이터(JSON)를 담는 페이지
-	// API
+	// 위를 API라고 부름
 	// 이름과 생년월일을 전달 받고, 이름과 나이를 json으로 response 담는 기능
 	@GetMapping("/ajax/person")
 	@ResponseBody

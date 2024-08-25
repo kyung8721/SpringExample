@@ -33,4 +33,15 @@ public class UserService {
 		int count = userRepository.insertUserByObject(user);
 		return count;
 	}
+	
+	// 전달받은 email이 중복된 상태인지 알려주는 기능
+	public boolean isDuplicateEmail(String email) {
+		int count = userRepository.selectCountByEmail(email);
+		
+		if(count == 0) {
+			return false; // 중복 안됨
+		}else {
+			return true; // 중복됨
+		}
+	}
 }
